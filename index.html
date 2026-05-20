@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Kairav Sharma — D2C Tools & App Builder</title>
+<meta name="description" content="Kairav Sharma is a full-stack developer in Mumbai building D2C tools, rapid MVPs, and AI-powered products. Six deployed portfolio apps. Open to first clients."/>
+<meta name="author" content="Kairav Sharma"/>
+<meta name="theme-color" content="#0c0d0f"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230c0d0f'/%3E%3Ctext x='50' y='73' font-size='66' font-family='Georgia,serif' font-weight='700' fill='%23d4522a' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Kairav Sharma — D2C Tools & App Builder"/>
+<meta property="og:description" content="Full-stack developer in Mumbai. Six deployed portfolio apps — D2C dashboards, marketplaces, and AI tools. Open to first clients."/>
+<meta property="og:url" content="https://kairav-portfolio.vercel.app/"/>
+<meta property="og:site_name" content="Kairav Sharma"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Kairav Sharma — D2C Tools & App Builder"/>
+<meta name="twitter:description" content="Full-stack developer in Mumbai. Six deployed portfolio apps. Open to first clients."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #0c0d0f;
+  --surface: #131519;
+  --surface2: #191c22;
+  --border: #1f2330;
+  --border2: #262c3a;
+  --text: #e2e4ec;
+  --muted: #6b7280;
+  --muted2: #3d4455;
+  --rust: #d4522a;
+  --rust2: #e8744e;
+  --gold: #c8943a;
+  --sage: #4a7a5a;
+  --cream: #f0ead8;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Playfair Display',Georgia,serif;font-size:16px;line-height:1.6;overflow-x:hidden}
+
+/* NOISE */
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9998;opacity:.6}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;padding:0 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(12,13,15,0.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--text);text-decoration:none;letter-spacing:-.01em}
+.nav-logo em{color:var(--rust);font-style:italic}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{font-family:'Inter',sans-serif;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:8px 20px;border:1px solid var(--rust);color:var(--rust);text-decoration:none;transition:all .2s;cursor:pointer}
+.nav-cta:hover{background:var(--rust);color:#fff}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;padding-top:56px}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 65% 40%,rgba(212,82,42,.12) 0%,transparent 55%),radial-gradient(ellipse at 20% 70%,rgba(74,122,90,.08) 0%,transparent 50%);pointer-events:none}
+.hero-left{padding:80px 48px 80px 48px;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--rust);margin-bottom:28px;opacity:0;animation:fadeUp .6s ease forwards .2s}
+.hero-headline{font-family:'Playfair Display',serif;font-size:clamp(52px,6.5vw,88px);font-weight:900;line-height:.94;letter-spacing:-.02em;color:var(--text);margin-bottom:8px;opacity:0;animation:fadeUp .7s ease forwards .35s}
+.hero-headline em{color:var(--rust);font-style:italic}
+.hero-sub{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(18px,2vw,24px);color:var(--muted);line-height:1.45;max-width:440px;margin-top:24px;opacity:0;animation:fadeUp .7s ease forwards .5s}
+.hero-stats{display:flex;gap:0;margin-top:40px;opacity:0;animation:fadeUp .7s ease forwards .65s;border:1px solid var(--border)}
+.hero-stat{padding:16px 24px;border-right:1px solid var(--border);flex:1}
+.hero-stat:last-child{border-right:none}
+.hero-stat-n{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--text);line-height:1}
+.hero-stat-l{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.hero-cta{display:flex;gap:14px;margin-top:36px;opacity:0;animation:fadeUp .7s ease forwards .8s}
+.btn-p{background:var(--rust);color:#fff;padding:14px 32px;font-family:'Inter',sans-serif;font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:background .2s,transform .15s;display:inline-block}
+.btn-p:hover{background:#b8411f;transform:translateY(-1px)}
+.btn-o{background:transparent;color:var(--text);padding:14px 32px;font-family:'Inter',sans-serif;font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border:1px solid var(--border2);transition:border-color .2s;display:inline-block;cursor:pointer}
+.btn-o:hover{border-color:var(--text)}
+.hero-right{position:relative;overflow:hidden;border-left:1px solid var(--border)}
+.hero-right-grid{position:absolute;inset:0;display:grid;grid-template-rows:1fr 1fr;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
+.hero-right-cell{background:var(--bg);display:flex;flex-direction:column;justify-content:flex-end;padding:28px;position:relative;overflow:hidden;opacity:0;animation:fadeIn 1s ease forwards}
+.hero-right-cell:nth-child(1){animation-delay:.9s}
+.hero-right-cell:nth-child(2){animation-delay:1.05s}
+.hero-right-cell:nth-child(3){animation-delay:1.2s}
+.hero-right-cell:nth-child(4){animation-delay:1.35s}
+.hero-right-cell::before{content:'';position:absolute;inset:0;opacity:.06}
+.cell-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.cell-value{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--text);line-height:1}
+.cell-desc{font-family:'Inter',sans-serif;font-size:11px;color:var(--muted);margin-top:4px}
+.cell-dot{position:absolute;top:20px;right:20px;width:8px;height:8px;border-radius:50%}
+.cell-dot.live{background:var(--sage);box-shadow:0 0 8px var(--sage);animation:pulse 2s ease-in-out infinite}
+
+/* ABOUT */
+.about{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:100px 48px}
+.about-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.section-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--rust);margin-bottom:16px}
+.about-title{font-family:'Playfair Display',serif;font-size:clamp(40px,5vw,64px);font-weight:900;line-height:.95;letter-spacing:-.02em;color:var(--text)}
+.about-title em{color:var(--rust);font-style:italic}
+.about-body{font-family:'Inter',sans-serif;font-size:15px;color:var(--muted);line-height:1.75;margin-top:28px}
+.about-body p+p{margin-top:16px}
+.about-body strong{color:var(--text);font-weight:500}
+.about-right{padding-top:8px}
+.about-list{list-style:none;display:flex;flex-direction:column}
+.about-item{display:flex;gap:20px;align-items:flex-start;padding:20px 0;border-bottom:1px solid var(--border)}
+.about-item:first-child{border-top:1px solid var(--border)}
+.about-num{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--muted2);line-height:1;flex-shrink:0;width:40px;transition:color .3s}
+.about-item:hover .about-num{color:var(--rust)}
+.about-text strong{display:block;font-family:'Inter',sans-serif;font-weight:500;font-size:15px;color:var(--text);margin-bottom:4px}
+.about-text span{font-family:'Inter',sans-serif;font-size:13px;color:var(--muted);line-height:1.6}
+
+/* WORK */
+.work{padding:100px 48px;background:var(--bg)}
+.work-inner{max-width:1200px;margin:0 auto}
+.work-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:56px}
+.work-title{font-family:'Playfair Display',serif;font-size:clamp(40px,5vw,64px);font-weight:900;line-height:.95;letter-spacing:-.02em;color:var(--text)}
+.work-title em{color:var(--rust);font-style:italic}
+.work-note{font-family:'Inter',sans-serif;font-size:13px;color:var(--muted);max-width:280px;text-align:right;line-height:1.6}
+.projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
+
+/* PROJECT CARD */
+.project-card{background:var(--bg);padding:40px;position:relative;overflow:hidden;text-decoration:none;color:inherit;display:block;transition:background .25s}
+.project-card:hover{background:var(--surface)}
+.project-card.featured{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:0;padding:0;background:var(--surface)}
+.project-card.featured:hover{background:var(--surface2)}
+.featured-left{padding:52px;border-right:1px solid var(--border)}
+.featured-right{padding:52px;display:flex;flex-direction:column;justify-content:space-between}
+.card-accent{position:absolute;top:0;left:0;right:0;height:2px}
+.card-num{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted2);margin-bottom:14px}
+.card-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;line-height:1;letter-spacing:-.01em;color:var(--text);margin-bottom:6px}
+.card-brand{font-family:'Playfair Display',serif;font-style:italic;font-size:16px;color:var(--muted);margin-bottom:16px}
+.card-desc{font-family:'Inter',sans-serif;font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:24px}
+.card-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:24px}
+.card-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--border2);color:var(--muted)}
+.card-metrics{display:flex;gap:24px;margin-top:auto}
+.card-metric-v{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--text);line-height:1;margin-bottom:3px}
+.card-metric-l{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.card-link{margin-top:32px;display:inline-flex;align-items:center;gap:8px;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--rust);text-decoration:none;transition:gap .2s}
+.project-card:hover .card-link{gap:12px}
+.card-arrow{position:absolute;bottom:28px;right:28px;width:36px;height:36px;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;transition:background .2s,border-color .2s}
+.project-card:hover .card-arrow{background:var(--rust);border-color:var(--rust)}
+.project-card:hover .card-arrow svg path{stroke:#fff}
+
+/* MOCKUP */
+.mockup{background:var(--bg);border:1px solid var(--border);overflow:hidden}
+.mock-bar{height:28px;background:var(--surface2);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 12px;gap:5px}
+.mock-dot{width:7px;height:7px;border-radius:50%}
+.mock-body{padding:14px}
+.mock-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:10px}
+.mock-stat{background:var(--surface2);padding:8px;border-radius:2px}
+.mock-sv{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;line-height:1;margin-bottom:2px}
+.mock-sl{font-family:'DM Mono',monospace;font-size:7px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.mock-chart{background:var(--surface2);padding:10px;height:60px;display:flex;align-items:flex-end;gap:3px;margin-bottom:8px}
+.mock-b{flex:1;border-radius:1px 1px 0 0;background:rgba(212,82,42,.4);transition:background .2s}
+.mock-b.hi{background:var(--rust)}
+.project-card:hover .mock-b{background:rgba(212,82,42,.55)}
+.project-card:hover .mock-b.hi{background:var(--rust2)}
+.mock-table{background:var(--surface2);overflow:hidden}
+.mock-th-row,.mock-tr{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;padding:5px 8px;border-bottom:1px solid var(--border)}
+.mock-th{font-family:'DM Mono',monospace;font-size:7px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2)}
+.mock-td{font-family:'DM Mono',monospace;font-size:8px;color:var(--muted)}
+.mock-td.r{color:var(--rust2)}
+.mock-td.g{color:#6abf7a}
+.mock-td.a{color:var(--gold)}
+.mock-badge{display:inline-block;font-size:6px;padding:1px 5px;letter-spacing:.08em;text-transform:uppercase}
+.badge-r{background:rgba(212,82,42,.15);color:var(--rust2)}
+.badge-g{background:rgba(106,191,122,.15);color:#6abf7a}
+.badge-a{background:rgba(200,148,58,.15);color:var(--gold)}
+
+/* SERVICES */
+.services{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:100px 48px}
+.services-inner{max-width:1200px;margin:0 auto}
+.services-header{margin-bottom:56px}
+.services-title{font-family:'Playfair Display',serif;font-size:clamp(40px,5vw,64px);font-weight:900;line-height:.95;letter-spacing:-.02em;color:var(--text)}
+.services-title em{color:var(--rust);font-style:italic}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.service-card{background:var(--surface);padding:36px 32px;transition:background .2s}
+.service-card:hover{background:var(--surface2)}
+.service-icon{width:40px;height:40px;display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+.service-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--text);margin-bottom:12px}
+.service-desc{font-family:'Inter',sans-serif;font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:20px}
+.service-price{font-family:'Playfair Display',serif;font-style:italic;font-size:15px;color:var(--rust)}
+
+/* PROCESS */
+.process{padding:100px 48px;background:var(--bg)}
+.process-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:start}
+.process-title{font-family:'Playfair Display',serif;font-size:clamp(40px,5vw,64px);font-weight:900;line-height:.95;letter-spacing:-.02em;color:var(--text)}
+.process-title em{color:var(--rust);font-style:italic}
+.process-steps{display:flex;flex-direction:column}
+.step{display:flex;gap:24px;padding:24px 0;border-bottom:1px solid var(--border);align-items:flex-start}
+.step-n{font-family:'Playfair Display',serif;font-size:40px;font-weight:700;color:var(--muted2);line-height:1;flex-shrink:0;width:48px;transition:color .3s}
+.step:hover .step-n{color:var(--rust)}
+.step-title{font-family:'Inter',sans-serif;font-size:15px;font-weight:500;color:var(--text);margin-bottom:6px}
+.step-desc{font-family:'Inter',sans-serif;font-size:13px;color:var(--muted);line-height:1.65}
+
+/* CONTACT */
+.contact{background:var(--surface);border-top:1px solid var(--border);padding:120px 48px;text-align:center}
+.contact-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--rust);margin-bottom:20px}
+.contact-title{font-family:'Playfair Display',serif;font-size:clamp(60px,9vw,120px);font-weight:900;line-height:.9;letter-spacing:-.02em;color:var(--text);margin-bottom:32px}
+.contact-title em{color:var(--rust);font-style:italic}
+.contact-sub{font-family:'Playfair Display',serif;font-style:italic;font-size:20px;color:var(--muted);max-width:460px;margin:0 auto 56px}
+.contact-links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.contact-link{display:inline-flex;align-items:center;gap:9px;padding:14px 28px;font-family:'Inter',sans-serif;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:all .2s;cursor:pointer}
+.contact-link.primary{background:var(--rust);color:#fff;border:1px solid var(--rust)}
+.contact-link.primary:hover{background:#b8411f;border-color:#b8411f}
+.contact-link.outline{border:1px solid var(--border2);color:var(--muted)}
+.contact-link.outline:hover{border-color:var(--text);color:var(--text)}
+
+/* FOOTER */
+footer{background:var(--bg);border-top:1px solid var(--border);padding:20px 48px;display:flex;align-items:center;justify-content:space-between}
+.footer-logo{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--muted2)}
+.footer-logo em{font-style:italic;color:var(--rust)}
+.footer-copy{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;color:var(--muted2)}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border2)}
+
+@media(max-width:900px){
+  nav{padding:0 20px}
+  .nav-links,.nav-cta{display:none}
+  .hero{grid-template-columns:1fr}
+  .hero-right{min-height:320px}
+  .hero-left{padding:60px 24px}
+  section,.about,.work,.services,.process,.contact{padding:72px 24px}
+  .about-inner,.process-inner{grid-template-columns:1fr;gap:48px}
+  .projects-grid{grid-template-columns:1fr}
+  .project-card.featured{grid-template-columns:1fr}
+  .featured-left{border-right:none;border-bottom:1px solid var(--border)}
+  .featured-right{padding:0 52px 52px}
+  .services-grid{grid-template-columns:1fr}
+  .work-header{flex-direction:column;align-items:flex-start;gap:16px}
+  .work-note{text-align:left}
+  footer{flex-direction:column;gap:8px;text-align:center}
+}
+
+.project-screenshot img{width:100%;height:auto;display:block;transition:transform .4s ease}
+
+.card-solves{font-family:'Inter',sans-serif;font-size:12px;line-height:1.6;color:var(--muted);background:var(--surface2);border-left:2px solid var(--rust);padding:10px 14px;margin-bottom:14px}
+.card-solves strong{color:var(--text);font-weight:500}
+
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Kairav <em>Sharma</em></a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:sharmakairav27@gmail.com" data-mail class="nav-cta">Hire me</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding:0">
+  <div class="hero-bg"></div>
+  <div class="hero-left">
+    <p class="hero-eyebrow">Mumbai · Pune · Beginner · Open to first clients</p>
+    <h1 class="hero-headline">Full-stack.<br/>No clients<br/><em>yet.</em></h1>
+    <p class="hero-sub">I build the frontend, backend, database, and deployment — end to end. Six portfolio apps built to prove it. Looking for my first paying client.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-n">6</div><div class="hero-stat-l">Portfolio apps</div></div>
+      <div class="hero-stat"><div class="hero-stat-n">₹15k</div><div class="hero-stat-l">First project rate</div></div>
+      <div class="hero-stat"><div class="hero-stat-n">Full</div><div class="hero-stat-l">Stack coverage</div></div>
+    </div>
+    <div class="hero-cta">
+      <a href="#work" class="btn-p">See the work</a>
+      <a href="#contact" class="btn-o">Get in touch</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-grid">
+      <div class="hero-right-cell">
+        <div class="cell-dot live"></div>
+        <div class="cell-label">Kindred Studio · Portfolio demo</div>
+        <div class="cell-value">Full-stack</div>
+        <div class="cell-desc">Next.js + Prisma + Recharts + Vercel</div>
+      </div>
+      <div class="hero-right-cell">
+        <div class="cell-dot live"></div>
+        <div class="cell-label">Hearth COD Recon · Portfolio demo</div>
+        <div class="cell-value">Full-stack</div>
+        <div class="cell-desc">CSV parsing + DB + auto-matching engine</div>
+      </div>
+      <div class="hero-right-cell">
+        <div class="cell-dot live"></div>
+        <div class="cell-label">BombayHelp · Portfolio demo</div>
+        <div class="cell-value">Full-stack</div>
+        <div class="cell-desc">Auth + Razorpay + Postgres + messaging</div>
+      </div>
+      <div class="hero-right-cell">
+        <div class="cell-dot live"></div>
+        <div class="cell-label">ClauseCheck · Portfolio demo</div>
+        <div class="cell-value">Full-stack</div>
+        <div class="cell-desc">Claude API + PDF parsing + risk engine</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-left reveal">
+      <p class="section-eyebrow">About</p>
+      <h2 class="about-title">Beginner.<br/><em>Full-stack.</em><br/>Honest.</h2>
+      <div class="about-body">
+        <p>I'm a developer based in Mumbai with <strong>zero client projects so far</strong>. I'm starting my freelancing journey and these six apps are the proof of what I can build — made entirely on my own, just to show potential clients what they'd get.</p>
+        <p>Every project here was built from scratch by me: <strong>the UI, the backend logic, the database, the API integrations, and the deployment</strong>. No templates bought. No agencies involved. Just me learning by building real things.</p>
+        <p>I'm looking for my first clients. In exchange for a heavily discounted rate, you get a serious developer who will treat your project like it's the most important thing they're working on — because it will be.</p>
+      </div>
+    </div>
+    <div class="about-right reveal" style="transition-delay:.15s">
+      <ul class="about-list">
+        <li class="about-item">
+          <span class="about-num">01</span>
+          <div class="about-text"><strong>Frontend — Everything You See</strong><span>UI design, component architecture, responsive layouts, charts and data visualisation, animations. I use Next.js, Tailwind, and shadcn/ui. Every page you see in these projects I built myself.</span></div>
+        </li>
+        <li class="about-item">
+          <span class="about-num">02</span>
+          <div class="about-text"><strong>Backend — Everything Under the Hood</strong><span>API routes, business logic, database schemas, CSV parsing, email sending, webhooks. I use Prisma, PostgreSQL, SQLite, and Node. The matching engine in the COD recon tool, the attribution logic in the influencer tracker — all written from scratch.</span></div>
+        </li>
+        <li class="about-item">
+          <span class="about-num">03</span>
+          <div class="about-text"><strong>Integrations — Third-party Services</strong><span>Razorpay for payments, Claude API for AI features, Resend for email, NextAuth for authentication, Vercel for deployment. I've wired all of these together across these six projects.</span></div>
+        </li>
+        <li class="about-item">
+          <span class="about-num">04</span>
+          <div class="about-text"><strong>These Are Portfolio Builds, Not Client Work</strong><span>I want to be upfront: every project here was self-initiated to demonstrate my skills. The brands are fictional. The data is seeded. But the code is real, the apps are deployed and working, and everything I'd build for you uses the same stack and approach.</span></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <div class="work-inner">
+    <div class="work-header reveal">
+      <div>
+        <p class="section-eyebrow">Selected work</p>
+        <h2 class="work-title">Six portfolio<br/><em>builds.</em></h2>
+      </div>
+      <p class="work-note">Made by me, for my portfolio. Fictional brands, real full-stack code, all deployed live. No client work yet — these exist purely to show what I can build.</p>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- FULL STACK BANNER -->
+      <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);padding:28px 36px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;margin-bottom:0">
+        <div>
+          <p style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--rust);margin-bottom:8px">What I built each project with — end to end</p>
+          <p style="font-family:'Inter',sans-serif;font-size:13px;color:var(--muted);line-height:1.6;max-width:520px">Every line in these projects — UI, API, database, deployment — was written by me. No bought templates, no agency code, no co-developer.</p>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border:1px solid var(--border2);color:var(--muted)">Next.js 15</span>
+          <span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border:1px solid var(--border2);color:var(--muted)">TypeScript</span>
+          <span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border:1px solid var(--border2);color:var(--muted)">Tailwind</span>
+          <span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border:1px solid var(--border2);color:var(--muted)">Prisma ORM</span>
+          <span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border:1px solid var(--border2);color:var(--muted)">PostgreSQL</span>
+          <span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border:1px solid var(--border2);color:var(--muted)">NextAuth</span>
+          <span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border:1px solid var(--border2);color:var(--muted)">Razorpay</span>
+          <span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border:1px solid var(--border2);color:var(--muted)">Claude API</span>
+          <span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border:1px solid var(--border2);color:var(--muted)">Vercel</span>
+        </div>
+      </div>
+
+      <!-- FEATURED: Kindred Returns -->
+      <a href="https://kindred-studio-tawny.vercel.app/dashboard" target="_blank" rel="noopener" class="project-card featured reveal">
+        <div class="featured-left">
+          <div class="card-accent" style="background:linear-gradient(90deg,var(--rust),var(--gold))"></div>
+          <div class="card-num">Portfolio build · No client · Built to demonstrate D2C analytics</div>
+          <h3 class="card-title">Returns & RTO<br/>Dashboard</h3>
+          <p class="card-brand">Kindred Studio — fictional brand I made up</p>
+        <p class="card-solves"><strong>Solves:</strong> D2C brands lose 25–35% of revenue to returns &amp; RTOs but track everything in Friday spreadsheets — no real-time visibility into which SKUs or pincodes are the problem.</p>
+          <p class="card-desc">I built this to show I understand one of D2C's biggest pain points: returns and RTOs eat 25–35% of revenue, and most brands track this in a Friday spreadsheet. I designed and built the full UI, all backend API routes, the database schema, charting, filters, and CSV export myself. The brand is fictional; the code is real.</p>
+          <div class="card-tags">
+            <span class="card-tag">Next.js 15</span>
+            <span class="card-tag">TypeScript</span>
+            <span class="card-tag">Recharts</span>
+            <span class="card-tag">Prisma</span>
+            <span class="card-tag">SQLite</span>
+            <span class="card-tag">Vercel</span>
+          </div>
+          <div class="card-metrics">
+            <div><div class="card-metric-v">33.3%</div><div class="card-metric-l">Live return rate</div></div>
+            <div><div class="card-metric-v">15.9%</div><div class="card-metric-l">RTO rate tracked</div></div>
+            <div><div class="card-metric-v">₹1.2L</div><div class="card-metric-l">Revenue lost visible</div></div>
+          </div>
+          <div class="card-link">View live demo →</div>
+        </div>
+        <div class="featured-right">
+          <div class="mockup">
+            <div class="mock-bar">
+              <div class="mock-dot" style="background:#e8826c"></div>
+              <div class="mock-dot" style="background:var(--gold)"></div>
+              <div class="mock-dot" style="background:#6abf7a"></div>
+            </div>
+            <div class="mock-body">
+              <div class="mock-stats">
+                <div class="mock-stat"><div class="mock-sv" style="color:var(--rust2)">33.3%</div><div class="mock-sl">Return rate</div></div>
+                <div class="mock-stat"><div class="mock-sv" style="color:var(--rust2)">15.9%</div><div class="mock-sl">RTO rate</div></div>
+                <div class="mock-stat"><div class="mock-sv">₹1.2L</div><div class="mock-sl">Rev lost</div></div>
+                <div class="mock-stat"><div class="mock-sv" style="color:var(--gold)">↑51%</div><div class="mock-sl">vs prev</div></div>
+              </div>
+              <div class="mock-chart">
+                <div class="mock-b" style="height:35%"></div><div class="mock-b" style="height:50%"></div><div class="mock-b" style="height:42%"></div><div class="mock-b" style="height:60%"></div><div class="mock-b hi" style="height:75%"></div><div class="mock-b" style="height:58%"></div><div class="mock-b" style="height:68%"></div><div class="mock-b hi" style="height:80%"></div>
+              </div>
+              <div class="mock-table">
+                <div class="mock-th-row"><span class="mock-th">SKU</span><span class="mock-th">Returns</span><span class="mock-th">RTO</span><span class="mock-th">Status</span></div>
+                <div class="mock-tr"><span class="mock-td">Lin Shirt — Ink</span><span class="mock-td r">75%</span><span class="mock-td">14%</span><span class="mock-td"><span class="mock-badge badge-r">Flag</span></span></div>
+                <div class="mock-tr"><span class="mock-td">Pleated Trouser</span><span class="mock-td a">75%</span><span class="mock-td">11%</span><span class="mock-td"><span class="mock-badge badge-a">Watch</span></span></div>
+                <div class="mock-tr"><span class="mock-td">Canvas Cap</span><span class="mock-td g">12%</span><span class="mock-td g">6%</span><span class="mock-td"><span class="mock-badge badge-g">OK</span></span></div>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:32px">
+            <div class="card-tag" style="display:inline-block;margin-bottom:12px">500 orders · 5 views · 3 days build</div>
+            <p style="font-family:'Inter',sans-serif;font-size:12px;color:var(--muted);line-height:1.6">Pincode heatmap, SKU performance, customer risk flags, date range picker, CSV export. Built as a reusable template for any D2C brand.</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- COD Recon -->
+      <a href="https://hearth-cod-recon.vercel.app/dashboard" target="_blank" rel="noopener" class="project-card reveal" style="transition-delay:.05s">
+        <div class="card-accent" style="background:var(--sage)"></div>
+        <div class="card-num">Portfolio build · No client · Built to demonstrate ops tooling</div>
+        <h3 class="card-title">COD Recon<br/>Tool</h3>
+        <p class="card-brand">Hearth Home Goods — fictional brand I made up</p>
+        <p class="card-solves"><strong>Solves:</strong> Lakhs of COD payments sitting unremitted by couriers, reconciled manually in Excel — discrepancies go undetected for weeks.</p>
+        <p class="card-desc">Built entirely by me to show I can handle real data pipeline work. I wrote the CSV parser, the AWB-matching engine, the aging bucket logic, and the email template generator. No client, no brief — just me solving a real problem to prove I can.</p>
+        <div class="card-tags"><span class="card-tag">PapaParse</span><span class="card-tag">CSV matching</span><span class="card-tag">Aging reports</span><span class="card-tag">Email templates</span></div>
+        <div class="card-metrics">
+          <div><div class="card-metric-v">₹4.06L</div><div class="card-metric-l">COD outstanding</div></div>
+          <div><div class="card-metric-v">74%</div><div class="card-metric-l">Match rate</div></div>
+          <div><div class="card-metric-v">3</div><div class="card-metric-l">Couriers</div></div>
+        </div>
+        <div class="card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7v10" stroke="var(--muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+
+      <!-- Influencer -->
+      <a href="https://lumen-co.vercel.app/dashboard" target="_blank" rel="noopener" class="project-card reveal" style="transition-delay:.1s">
+        <div class="card-accent" style="background:var(--gold)"></div>
+        <div class="card-num">Portfolio build · No client · Built to demonstrate marketing tooling</div>
+        <h3 class="card-title">Influencer<br/>Campaign Tracker</h3>
+        <p class="card-brand">Lumen & Co Skincare — fictional brand I made up</p>
+        <p class="card-solves"><strong>Solves:</strong> Influencer campaigns tracked in Google Sheets — no single source of truth for discount codes, payments, attribution, or true ROI per creator.</p>
+        <p class="card-desc">I built this to show I can handle multi-entity relational data. The multi-step campaign wizard, discount code generation, attribution logic, and payment status tracking were all designed and built by me from scratch. Everything you see I coded.</p>
+        <div class="card-tags"><span class="card-tag">Campaign wizard</span><span class="card-tag">Attribution</span><span class="card-tag">ROI tracking</span><span class="card-tag">Payments</span></div>
+        <div class="card-metrics">
+          <div><div class="card-metric-v">₹20.8L</div><div class="card-metric-l">Total spend tracked</div></div>
+          <div><div class="card-metric-v">1.92×</div><div class="card-metric-l">Avg ROI</div></div>
+          <div><div class="card-metric-v">60</div><div class="card-metric-l">Collabs</div></div>
+        </div>
+        <div class="card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7v10" stroke="var(--muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+
+      <!-- BombayHelp -->
+      <a href="https://bombayhelp.vercel.app/" target="_blank" rel="noopener" class="project-card reveal" style="transition-delay:.15s">
+        <div class="card-accent" style="background:#4a7ab5"></div>
+        <div class="card-num">Portfolio build · No client · Built to demonstrate two-sided marketplace</div>
+        <h3 class="card-title">BombayHelp</h3>
+        <p class="card-brand">Fictional marketplace — self-initiated portfolio project</p>
+        <p class="card-solves"><strong>Solves:</strong> Two-sided marketplace is the most-requested MVP pattern — hard to get right with dual auth, listings, payments, messaging, and admin all working end-to-end.</p>
+        <p class="card-desc">I built this to show I can ship a complete two-sided marketplace: two separate auth flows, provider listings, search and filters, a booking flow with real Razorpay test-mode integration, messaging, reviews, and admin moderation. All designed and built by me.</p>
+        <div class="card-tags"><span class="card-tag">NextAuth</span><span class="card-tag">Razorpay</span><span class="card-tag">2-sided</span><span class="card-tag">Neon Postgres</span></div>
+        <div class="card-metrics">
+          <div><div class="card-metric-v">34+</div><div class="card-metric-l">Verified helpers</div></div>
+          <div><div class="card-metric-v">7</div><div class="card-metric-l">Localities</div></div>
+          <div><div class="card-metric-v">4</div><div class="card-metric-l">Service types</div></div>
+        </div>
+        <div class="card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7v10" stroke="var(--muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+
+      <!-- ClauseCheck -->
+      <a href="https://clausecheck-wine.vercel.app/" target="_blank" rel="noopener" class="project-card reveal" style="transition-delay:.2s">
+        <div class="card-accent" style="background:linear-gradient(90deg,#3b82f6,var(--rust))"></div>
+        <div class="card-num">Portfolio build · No client · Built to demonstrate AI integration</div>
+        <h3 class="card-title">ClauseCheck</h3>
+        <p class="card-brand">Self-initiated AI tool — portfolio project</p>
+        <p class="card-solves"><strong>Solves:</strong> Founders sign SaaS contracts without understanding auto-renewal traps, liability caps, or broad IP clauses — a lawyer review costs ₹5k–₹20k and takes days.</p>
+        <p class="card-desc">I built this to show I can wire AI APIs into real products. I wrote the PDF/DOCX parser, the Claude API integration with structured JSON output, the risk scoring system, and the full report UI. No client, no brief — just me proving I can do AI product work end to end.</p>
+        <div class="card-tags"><span class="card-tag">Claude API</span><span class="card-tag">PDF parse</span><span class="card-tag">JSON mode</span><span class="card-tag">Risk scoring</span></div>
+        <div class="card-metrics">
+          <div><div class="card-metric-v">~30s</div><div class="card-metric-l">Full review time</div></div>
+          <div><div class="card-metric-v">9</div><div class="card-metric-l">Risk categories</div></div>
+          <div><div class="card-metric-v">0</div><div class="card-metric-l">Login required</div></div>
+        </div>
+        <div class="card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7v10" stroke="var(--muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+
+      <!-- Asana -->
+      <a href="https://asana-liard.vercel.app/" target="_blank" rel="noopener" class="project-card reveal" style="transition-delay:.25s">
+        <div class="card-accent" style="background:var(--sage)"></div>
+        <div class="card-num">Portfolio build · No client · Built to demonstrate vertical SaaS</div>
+        <h3 class="card-title">Asana Studio</h3>
+        <p class="card-brand">Fictional yoga studio platform — portfolio project</p>
+        <p class="card-solves"><strong>Solves:</strong> Boutique studios pay ₹8–15k/month for over-engineered platforms they can't customise — no affordable way to own branded booking infrastructure.</p>
+        <p class="card-desc">I built this to show I can ship a multi-location, multi-user SaaS product. Per-studio branded pages, instructor calendars, class scheduling, Razorpay credit packs, WhatsApp reminders, no-show tracking, and a full admin dashboard — all designed and coded by me from scratch.</p>
+        <div class="card-tags"><span class="card-tag">Next.js 15</span><span class="card-tag">NextAuth</span><span class="card-tag">Razorpay</span><span class="card-tag">Neon Postgres</span><span class="card-tag">WhatsApp API</span></div>
+        <div class="card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7v10" stroke="var(--muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-inner">
+    <div class="services-header reveal">
+      <p class="section-eyebrow">Services</p>
+      <h2 class="services-title">What I build<br/><em>& what it costs.</em></h2>
+      <p style="font-family:'Inter',sans-serif;font-size:14px;color:var(--muted);margin-top:16px">Fixed project pricing. No hourly. No ambiguity. First 3 clients get a heavily discounted rate.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" stroke="var(--rust)" stroke-width="1.5" stroke-linejoin="round"/><rect x="14" y="3" width="7" height="7" stroke="var(--rust)" stroke-width="1.5" stroke-linejoin="round"/><rect x="3" y="14" width="7" height="7" stroke="var(--rust)" stroke-width="1.5" stroke-linejoin="round"/><rect x="14" y="14" width="7" height="7" stroke="var(--rust)" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+        <h3 class="service-name">D2C Internal Tools</h3>
+        <p class="service-desc">Custom dashboards, ops workflows, and data tools for D2C brands. Returns analytics, COD reconciliation, influencer tracking. Integrates with Shopify, courier APIs, your existing stack.</p>
+        <p class="service-price">₹40k–₹80k · 1–2 week delivery</p>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.08s">
+        <div class="service-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="var(--sage)" stroke-width="1.5" stroke-linejoin="round"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="var(--sage)" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <h3 class="service-name">Rapid MVP</h3>
+        <p class="service-desc">Napkin sketch to deployed product. Two-sided marketplaces, SaaS tools, booking systems, AI-powered products. First working build in 48 hours. Production-ready in 2 weeks.</p>
+        <p class="service-price">₹60k–₹1.2L · 2 week delivery</p>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.16s">
+        <div class="service-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="var(--gold)" stroke-width="1.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <h3 class="service-name">AI Integration</h3>
+        <p class="service-desc">Wrap LLMs into real, useful products. Contract reviewers, customer support agents, content pipelines, document processors. Not demo toys — tools that earn their compute back in week one.</p>
+        <p class="service-price">₹30k–₹70k · 1 week delivery</p>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.08s">
+        <div class="service-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M17 3H7a2 2 0 00-2 2v16l7-3 7 3V5a2 2 0 00-2-2z" stroke="#4a7ab5" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+        <h3 class="service-name">Retainer Sprint</h3>
+        <p class="service-desc">Monthly iteration retainer for ongoing feature work, maintenance, and experiments. Ideal after a successful project build. One sprint per month, weekly check-ins, shared Notion roadboard.</p>
+        <p class="service-price">₹25k–₹50k per month · Rolling</p>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.16s">
+        <div class="service-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" stroke="#8a5a8a" stroke-width="1.5" stroke-linejoin="round"/><polyline points="9,22 9,12 15,12 15,22" stroke="#8a5a8a" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+        <h3 class="service-name">SaaS Replacement</h3>
+        <p class="service-desc">Identify a ₹5–15k/month SaaS subscription you don't fully need, and replace it with a custom tool that fits your exact workflow. One build cost, zero monthly fee, fully owned by you.</p>
+        <p class="service-price">₹25k–₹60k · 1 week delivery</p>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.24s">
+        <div class="service-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="var(--rust)" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+        <h3 class="service-name">First Project Deal</h3>
+        <p class="service-desc">Taking my first 3 clients at a heavily discounted rate in exchange for honest feedback and a testimonial. You get a fully built, deployed product. I get my first real-world case study.</p>
+        <p class="service-price">₹15k–₹25k · Any project · 3 spots left</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="process-inner">
+    <div class="reveal">
+      <p class="section-eyebrow">Process</p>
+      <h2 class="process-title">How I<br/><em>work.</em></h2>
+      <p style="font-family:'Inter',sans-serif;font-size:14px;color:var(--muted);line-height:1.7;margin-top:20px">Every project follows this sequence. No surprises, no scope creep, no "almost done" for three weeks.</p>
+    </div>
+    <div class="process-steps">
+      <div class="step reveal"><span class="step-n">01</span><div><div class="step-title">20-Minute Discovery</div><div class="step-desc">One call, no pitch deck. I ask about the problem, what you've tried, and what success looks like. If I can solve it, I tell you how. If I can't, I say that.</div></div></div>
+      <div class="step reveal" style="transition-delay:.08s"><span class="step-n">02</span><div><div class="step-title">Written Proposal</div><div class="step-desc">Scope, price, timeline, and a "won't build" list. No ambiguity. 50% deposit upfront, 50% on delivery.</div></div></div>
+      <div class="step reveal" style="transition-delay:.16s"><span class="step-n">03</span><div><div class="step-title">Visible in 48 Hours</div><div class="step-desc">Something working — even if rough — within 48 hours of kickoff. Weekly Loom demos, shared staging URL, async Slack. You always know where things stand.</div></div></div>
+      <div class="step reveal" style="transition-delay:.24s"><span class="step-n">04</span><div><div class="step-title">Ship & Handover</div><div class="step-desc">Deployed on Vercel with your domain. Documented GitHub repo. Walkthrough video so your team can use it from day one. You own everything.</div></div></div>
+      <div class="step reveal" style="transition-delay:.32s"><span class="step-n">05</span><div><div class="step-title">Optional Retainer</div><div class="step-desc">Most clients stay on for iteration sprints. Month-to-month, no long-term commitment. Feature additions, tweaks, keeping it running as your ops evolve.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <p class="contact-eyebrow">Get in touch</p>
+  <h2 class="contact-title">Zero clients.<br/>Ready to <em>change that.</em></h2>
+  <p class="contact-sub">I'm a beginner looking for my first project. You get a full-stack developer who'll treat your work like it's the only thing on their plate — because it will be.</p>
+  <div class="contact-links">
+    <a href="mailto:sharmakairav27@gmail.com" data-mail class="contact-link primary">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="#fff" stroke-width="1.5"/><polyline points="22,6 12,13 2,6" stroke="#fff" stroke-width="1.5"/></svg>
+      Email me
+    </a>
+    <a href="https://www.linkedin.com/in/kairav-sharma-722b93385" target="_blank" rel="noopener" class="contact-link outline">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="2" y="9" width="4" height="12" stroke="currentColor" stroke-width="1.5"/><circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="1.5"/></svg>
+      LinkedIn
+    </a>
+    <a href="https://github.com/kairavsharma2025-afk" target="_blank" rel="noopener" class="contact-link outline">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      GitHub
+    </a>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-logo">Kairav <em>Sharma</em></span>
+  <span class="footer-copy">Mumbai, India · Open to first clients · © 2025</span>
+</footer>
+
+<script>
+/* Scroll-reveal */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)} });
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+/* Nav scroll-spy */
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  sections.forEach(s=>{if(window.scrollY>=s.offsetTop-200)cur=s.getAttribute('id')});
+  navLinks.forEach(a=>{a.style.color=a.getAttribute('href')==='#'+cur?'var(--rust)':''});
+},{passive:true});
+
+/* Smooth in-page scrolling */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}
+  });
+});
+
+/* ---- Hire me / Email me — reliable mail action ----
+   Opens the visitor's mail app with a pre-filled email.
+   If no desktop mail app is configured (so nothing happens),
+   it falls back to opening Gmail's web compose window. */
+(function(){
+  const TO = 'sharmakairav27@gmail.com';
+  const SUBJECT = 'Project enquiry — via your portfolio';
+  const BODY = [
+    'Hi Kairav,',
+    '',
+    'I came across your portfolio and I would like to talk about a project.',
+    '',
+    'What I need: ',
+    'Rough timeline: ',
+    'Budget range: ',
+    '',
+    'Thanks,',
+    ''
+  ].join('\n');
+
+  const su = encodeURIComponent(SUBJECT);
+  const bo = encodeURIComponent(BODY);
+  const mailto = 'mailto:' + TO + '?subject=' + su + '&body=' + bo;
+  const gmail  = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + TO + '&su=' + su + '&body=' + bo;
+
+  function openMail(e){
+    if(e){ e.preventDefault(); }
+    let switched = false;
+    const markSwitched = function(){ switched = true; };
+    // If a mail app opens, the browser tab loses focus / becomes hidden.
+    window.addEventListener('blur', markSwitched, { once:true });
+    document.addEventListener('visibilitychange', markSwitched, { once:true });
+
+    // Trigger the native mail client.
+    window.location.href = mailto;
+
+    // If nothing took over after 1.2s, open Gmail web compose instead.
+    setTimeout(function(){
+      window.removeEventListener('blur', markSwitched);
+      document.removeEventListener('visibilitychange', markSwitched);
+      if(!switched && !document.hidden){
+        window.open(gmail, '_blank', 'noopener');
+      }
+    }, 1200);
+  }
+
+  document.querySelectorAll('[data-mail]').forEach(function(el){
+    el.setAttribute('href', mailto);            // native + right-click "copy email" still work
+    el.addEventListener('click', openMail);     // smart fallback on click
+  });
+})();
+</script>
+</body>
+</html>
